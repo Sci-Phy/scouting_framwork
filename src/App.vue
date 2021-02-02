@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link :to="{ name: 'Analysis' }">Analysis</router-link> |
+      <router-link :to="{ name: 'TeamsAll' }">Teams</router-link> |
     </div>
     <router-view />
   </div>
