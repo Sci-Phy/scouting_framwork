@@ -15,7 +15,7 @@ export default {
   name: "App",
 
   components: {
-    SideBar,
+    SideBar
     //Footer
   },
 

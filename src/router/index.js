@@ -4,6 +4,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Analysis from "../views/Analysis.vue";
 import Teams from "../views/Teams.vue";
 import NotFound from "../views/NotFound.vue";
+import Fields from "../views/Fields.vue";
 
 Vue.use(VueRouter);
 
@@ -12,6 +13,11 @@ const routes = [
     path: "/",
     name: "Dashboard",
     component: Dashboard
+  },
+  {
+    path: "/form",
+    name: "Form",
+    component: Fields
   },
   {
     path: "/analysis",
