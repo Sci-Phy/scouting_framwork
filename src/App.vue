@@ -1,34 +1,25 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link :to="{ name: 'Analysis' }">Analysis</router-link> |
-      <router-link :to="{ name: 'TeamsAll' }">Teams</router-link> |
-    </div>
-    <router-view />
-  </div>
+  <v-app id="app">
+    <SideBar />
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import SideBar from "@/components/App/SideBar.vue";
+//import Footer from "@/components/App/Footer.vue";
 
-#nav {
-  padding: 30px;
+export default {
+  name: "App",
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    SideBar,
+    //Footer
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+  data: () => ({}),
+  computed: {}
+};
+</script>
