@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import Info from "@/components/Form/Info.vue";
-import Auton from "@/components/Form/Auton.vue";
-import Teleop from "@/components/Form/Teleop.vue";
-import Endgame from "@/components/Form/Endgame.vue";
-import Misc from "@/components/Form/Misc.vue";
+import Info from "@/components/form/Info.vue";
+import Auton from "@/components/form/Auton.vue";
+import Teleop from "@/components/form/Teleop.vue";
+import Endgame from "@/components/form/Endgame.vue";
+import Misc from "@/components/form/Misc.vue";
 
 export default {
   components: {
@@ -36,8 +36,13 @@ export default {
   },
   methods: {
     appendIconCallback() {},
-    prependIconCallback() {}
-  }
+    prependIconCallback() {},
+    submit: function() {
+      console.log("Submit Successful");
+      console.log(this.allSubmitions);
+    }
+  },
+  computed: mapGetters(["allSubmitions"])
 };
 </script>
 

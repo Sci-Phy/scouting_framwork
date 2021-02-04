@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import SideBar from "@/components/App/SideBar.vue";
-//import Footer from "@/components/App/Footer.vue";
+import SideBar from "@/components/app/SideBar.vue";
+//import Footer from "@/components/app/Footer.vue";
 
 export default {
   name: "App",

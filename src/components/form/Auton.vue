@@ -15,24 +15,23 @@
         </v-container>
         <v-container>
           <v-checkbox
-            v-modal="a_movement"
+            v-model="a_movement"
             label="Robot moves off starting line"
           ></v-checkbox>
           <v-checkbox label="The robot scores balls"></v-checkbox>
         </v-container>
         <v-container>
           <h4>Ball port scored in</h4>
-          <v-btn-toggle v-modal="a_port" tile group>
+          <v-btn-toggle v-model="a_port" tile group>
             <v-btn value="high">High</v-btn>
             <v-btn value="low">Low</v-btn>
           </v-btn-toggle>
         </v-container>
         <v-container>
           <v-slider
-            v-model="ex.val"
+            v-model="a_accuracy"
             :label="ex.label"
             :thumb-color="ex.color"
-            thumb-label="true"
             min="0"
             max="100"
           ></v-slider>
