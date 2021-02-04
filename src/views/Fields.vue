@@ -11,6 +11,21 @@
         <Endgame />
         <br />
         <Misc />
+        <br />
+        <v-card>
+          <v-container>
+            <v-btn v-for="submition in allSubmitions" :key="submition.match">
+              {{ submition.match }}
+            </v-btn>
+          </v-container>
+          <v-container>
+            <span>
+              <v-btn @click="submit" block outlined tile color="accent"
+                >SUBMIT</v-btn
+              >
+            </span>
+          </v-container>
+        </v-card>
       </v-container>
     </v-form>
   </div>
@@ -22,6 +37,8 @@ import Auton from "@/components/form/Auton.vue";
 import Teleop from "@/components/form/Teleop.vue";
 import Endgame from "@/components/form/Endgame.vue";
 import Misc from "@/components/form/Misc.vue";
+
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
@@ -35,6 +52,7 @@ export default {
     return {};
   },
   methods: {
+    ...mapActions(["fetchAllData"]),
     appendIconCallback() {},
     prependIconCallback() {},
     submit: function() {
@@ -42,7 +60,10 @@ export default {
       console.log(this.allSubmitions);
     }
   },
-  computed: mapGetters(["allSubmitions"])
+  computed: mapGetters(["allSubmitions"]),
+  create() {
+    this.fetchAllData();
+  }
 };
 </script>
 
