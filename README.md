@@ -19,9 +19,10 @@ Make sure you have the server running (the backend system) before trying to run 
 The commands below are specfically for the FRONTEND part of the application. To run the server,
 
 ```node
-(sudo) node server.js
+(sudo) npm run start
 ```
 
+I made this a script in `package.json` now
 You might need the sudo if you are running on Linux, as the server attempts to bind to port 80, which is the HTTP port.
 
 ### Compiles and hot-reloads for development
