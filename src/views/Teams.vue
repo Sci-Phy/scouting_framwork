@@ -5,11 +5,10 @@
 
     <v-row dense>
       <v-col cols="12">
-        <v-card>
-          <v-card-title>1504</v-card-title>
-          <v-divider></v-divider>
-
-          <v-container>
+        <v-container>
+          <v-card v-for="submition in allSubmitions" :key="submition.team">
+            <v-card-title>{{ submition.team }}</v-card-title>
+            <v-divider></v-divider>
             <v-list dense>
               <v-list-item v-for="item in fields" :key="item.name" link>
                 <v-list-item-content>
@@ -17,14 +16,17 @@
                 </v-list-item-content>
               </v-list-item>
             </v-list>
-          </v-container>
-        </v-card>
+          </v-card>
+          <br />
+        </v-container>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   mounted() {
     console.log(this.$route.params.id);
@@ -58,10 +60,17 @@ export default {
         { name: "Alliance hangs" },
         { name: "Generator Balanced?" },
         { name: "Driver Quality" },
-        { name: "Comments" }
-      ]
+        { name: "Comments" },
+      ],
     };
-  }
+  },
+  methods: {
+    ...mapActions(["fetchAllData"]),
+  },
+  computed: mapGetters(["allSubmitions"]),
+  created() {
+    this.fetchAllData();
+  },
 };
 </script>
 

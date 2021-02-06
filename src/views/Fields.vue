@@ -14,13 +14,8 @@
         <br />
         <v-card>
           <v-container>
-            <v-btn v-for="submition in allSubmitions" :key="submition.match">
-              {{ submition.match }}
-            </v-btn>
-          </v-container>
-          <v-container>
             <span>
-              <v-btn @click="submit" block outlined tile color="accent"
+              <v-btn @click="sendData" block outlined tile color="accent"
                 >SUBMIT</v-btn
               >
             </span>
@@ -46,24 +41,60 @@ export default {
     Auton,
     Teleop,
     Endgame,
-    Misc
+    Misc,
   },
   data() {
-    return {};
+    return {
+      poggerino: [
+        {
+          id: "123456789",
+          pogchamp: "true",
+          match: "666",
+          team: "666",
+          color: "red",
+          a_start_pos: "",
+          a_movement: false,
+          a_score: false,
+          a_port: "",
+          a_accuracy: 50,
+          t_pickup: "",
+          t_ball_cap: 0,
+          t_port: "",
+          t_accuracy: 50,
+          t_trench_run: false,
+          t_trench_runs_made: 0,
+          t_through_generator: false,
+          t_cp_spin_2_win: false,
+          t_cp_spins: 0,
+          defensive: false,
+          foul_number: 0,
+          foul_type: "",
+          e_hang: "",
+          e_time_to_hang: 0,
+          e_hang_loc: "",
+          e_robot_hang_total: 0,
+          e_balanced: false,
+          human: "mid",
+          driver: "mid",
+          comments: "",
+        },
+      ],
+    };
   },
   methods: {
     ...mapActions(["fetchAllData"]),
+    ...mapActions(["submitForm"]),
     appendIconCallback() {},
     prependIconCallback() {},
-    submit: function() {
-      console.log("Submit Successful");
-      console.log(this.allSubmitions);
-    }
+    sendData(e) {
+      e.preventDefault();
+      this.submitForm(this.poggerino);
+    },
   },
   computed: mapGetters(["allSubmitions"]),
-  create() {
+  created() {
     this.fetchAllData();
-  }
+  },
 };
 </script>
 

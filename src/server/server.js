@@ -35,36 +35,46 @@ app.use(
 //app.use("/", express.static(__dirname + "/dist"));
 fileName = dir + moment().format("M;D;YYYY;H;mm;ss");
 fs.readdirSync(dir).forEach((file) => {
-  console.log("readdirSync");
+  console.log("Reading Files...");
   // you may want to filter these by extension, etc. to make sure they are JSON files
   if (file.includes(".json") && !file.includes(fileName)) {
     try {
       var records = JSON.parse(fs.readFileSync(dir + file, "utf8"));
-      console.log("try, records");
     } catch (e) {
       return;
     }
     for (var i = records.length - 1; i >= 0; i--) {
-      console.log("pushing records: " + i);
+      console.log("Pushing record: " + i); //this works
       oldData.push(records[i]);
     }
   }
 });
 
 app.post("/api", function(req, res) {
+  // req must be an array
+  console.log("Body request length: " + req.body.length);
   newRecords(req.body);
-  console.log(req.body);
+  //console.log(req.body);
   res.sendStatus(200);
 });
 
 app.get("/api", function(req, res) {
+  console.log("Get request triggered...");
   var allData = [];
+
+  console.log("OldData: " + oldData);
   for (var i = oldData.length - 1; i >= 0; i--) {
     allData.push(oldData[i]);
+    console.log("Pushing oldData entry: " + i);
   }
+  console.log("OldData: " + oldData);
+  console.log("Data: " + data);
   for (var j = data.length - 1; j >= 0; j--) {
-    allData.push(data[i]);
+    allData.push(data[j]);
+    console.log("Pushing data entry: " + j);
   }
+  console.log("Data: " + data);
+  console.log("AllData: " + allData);
   res.send(JSON.stringify(allData, null, 4));
 });
 
@@ -79,6 +89,7 @@ for (var dev in ifaces) {
 }
 console.log(address);
 
+// eslint-disable-next-line no-unused-vars
 function convert(obj) {
   //turns object.arrays into strings
   console.log("hit converted");
@@ -89,7 +100,9 @@ function convert(obj) {
      * read more here
      * https://eslint.org/docs/rules/no-prototype-builtins
      */
-    if (obj.prototype.hasOwnProperty.call(key)) {
+
+    if (obj.hasOwnProperty.call(key)) {
+      //this ^ throws an error, but we don't necessarily *need* this converter function
       if (obj[key] instanceof Array) {
         obj[key] = obj[key].toString();
         console.log("Object conversion was successful");
@@ -101,12 +114,10 @@ function convert(obj) {
 }
 
 function newRecords(records) {
-  console.log(records);
-  console.log("we actually hit the records bro");
+  console.log("New record length: " + records.length);
   for (var i = records.length - 1; i >= 0; i--) {
-    convert(records[i]);
+    //convert(records[i]); //error here
     data.push(records[i]);
-    console.log(data);
   }
 
   fs.writeFile(
@@ -115,6 +126,7 @@ function newRecords(records) {
     "binary",
     function(err) {
       error(err);
+      console.log("Error in write...");
     }
   );
 }
