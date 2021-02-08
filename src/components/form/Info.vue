@@ -38,9 +38,9 @@ export default {
     return {
       match: "",
       team: "",
-      alliance: ""
+      alliance: "",
     };
-  }
+  },
 };
 </script>
 
