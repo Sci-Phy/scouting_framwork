@@ -18,20 +18,24 @@
             v-model="a_movement"
             label="Robot moves off starting line"
           ></v-checkbox>
-          <v-checkbox label="The robot scores balls"></v-checkbox>
+          <v-checkbox
+            v-model="a_score"
+            label="The robot scores balls"
+            thumb-label
+          ></v-checkbox>
         </v-container>
         <v-container>
           <h4>Ball port scored in</h4>
-          <v-btn-toggle v-model="a_port" tile group>
+          <v-btn-toggle v-model="a_port" multiple tile group>
             <v-btn value="high">High</v-btn>
             <v-btn value="low">Low</v-btn>
           </v-btn-toggle>
         </v-container>
         <v-container>
           <v-slider
-            v-model="a_accuracy"
-            :label="ex.label"
-            :thumb-color="ex.color"
+            v-model="d[0].a_accuracy"
+            label="Auton Score Accuracy"
+            thumb-label
             min="0"
             max="100"
           ></v-slider>
@@ -50,10 +54,8 @@ export default {
       a_score: false,
       a_port: "",
       a_accuracy: 50,
-      //
-      ex: { label: "Auton Score Accuracy", val: 50, color: "primary" }
     };
-  }
+  },
 };
 </script>
 

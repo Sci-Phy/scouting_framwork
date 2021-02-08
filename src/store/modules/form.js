@@ -21,6 +21,7 @@ const state = {
       t_trench_run: false,
       t_trench_runs_made: 0,
       t_through_generator: false,
+      t_cp_spin_2_win: false,
       t_cp_spins: 0,
       defensive: false,
       foul_number: 0,
